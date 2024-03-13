@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FakeStoreApiMoviles.Views.AgregarProductoView"
+             xmlns:vm ="clr-namespace:FakeStoreApiMoviles.ViewModels"
+             Title="AgregarProductoView">
+    <ContentPage.BindingContext>
+        <vm:ProductosViewModel></vm:ProductosViewModel>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label FontAttributes="Bold">Nombre:</Label>
+        <Entry WidthRequest="800" Text="{Binding Producto.title}" Margin="0,0,0,30"></Entry>
+        <Label FontAttributes="Bold">Precio:</Label>
+        <Entry WidthRequest="800" Text="{Binding Producto.price}" Margin="0,0,0,30"></Entry>
+        <Label FontAttributes="Bold">Descripcion:</Label>
+        <Entry WidthRequest="800" Text="{Binding Producto.description}" Margin="0,0,0,30"></Entry>
+        <Label FontAttributes="Bold">URL de la imágen:</Label>
+        <Entry WidthRequest="800" Text="{Binding Imagen}" Margin="0,0,0,30"></Entry>
+        <Label FontAttributes="Bold">Categoria:</Label>
+        <Picker Margin="0,0,0,30" WidthRequest="800" ItemsSource="{Binding Categories}" SelectedItem="{Binding Category}" ItemDisplayBinding="{Binding name}" >
+            
+        </Picker>
+        <!--<Picker WidthRequest="800" Margin="0,0,0,30" ItemsSource="{Binding Categories}" 
+         ItemDisplayBinding="{Binding name}"  SelectedItem="{Binding Category.id}" />-->
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Margin="0,0,30,0" Text="Agregar" Command="{Binding AgregarProductoCommand}" Clicked="Regresar"></Button>
+            <Button Text="Regresar" Clicked="Regresar"></Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

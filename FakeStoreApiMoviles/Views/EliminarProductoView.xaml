@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FakeStoreApiMoviles.Views.EliminarProductoView"
+             xmlns:vm="clr-namespace:FakeStoreApiMoviles.ViewModels"
+             Title="EliminarProductoView">
+    <ContentPage.BindingContext>
+        <vm:ProductosViewModel></vm:ProductosViewModel>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Entry Text="{Binding IdProducto}"></Entry>
+        <Label FontAttributes="Bold">Desea eliminar el producto?:</Label>
+        <Entry WidthRequest="800" Text="{Binding ProductoPost.title}" Margin="0,0,0,30"></Entry>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button Margin="0,0,30,0" Text="Eliminar" Command="{Binding EliminarProductoCommand}" Clicked="Regresar"></Button>
+            <Button Text="Regresar" Clicked="Regresar"></Button>
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
