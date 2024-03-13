@@ -32,13 +32,13 @@ namespace FakeStoreApiMoviles.ViewModels
         public ICommand EditarProductoCommand { get; set; }
         public ICommand EliminarProductoCommand { get; set; }
         public ICommand VerProductoCommand { get; set; }
-        public int IdProducto { get; set; }
+        public static int idProducto;
         public ProductosViewModel()
         {
             api = new();
             AgregarProductoCommand = new AsyncCommand(AgregarProducto);
             EditarProductoCommand = new AsyncCommand(EditarProducto);
-            EliminarProductoCommand = new AsyncCommand(EliminarProducto);
+            EliminarProductoCommand = new AsyncCommand<int>(EliminarProducto);
             VerProductoCommand = new AsyncCommand<int>(VerProducto);
             MostrarProductos();
             Categorias();
@@ -46,12 +46,22 @@ namespace FakeStoreApiMoviles.ViewModels
         
         }
 
-        private async Task VerProducto(int arg)
+        //public void VerProducto(int id)
+        //{
+        //    if (id > 0)
+        //    {
+              
+        //        idProducto = id;
+               
+        //    }
+        //}
+
+        public async Task VerProducto(int arg)
         {
             Producto = await api.GetProducto(arg);
 
             Category = Producto.category;
-            IdProducto = Producto.id;
+            idProducto = arg;
             Actualizar();
         }
 
@@ -68,28 +78,29 @@ namespace FakeStoreApiMoviles.ViewModels
         }
        
 
-        private async Task EliminarProducto()
+        public async Task EliminarProducto(int id)
         {
-            if (Producto!=null)
+            if (id>0)
             {
-                await api.DeleteProduct(Producto, IdProducto);
+                await api.DeleteProduct(id);
                 MostrarProductos();
             }
         }
 
-        private async Task EditarProducto()
+       
+        public async Task EditarProducto()
         {
-            Producto.id = IdProducto;
+            
             if (Producto != null)
             {
                 
                 Producto.categoryId = Category.id;
-                await api.UpdateProduct(Producto);
+                await api.UpdateProduct(Producto, idProducto);
                 MostrarProductos();
             }
         }
 
-        private async Task AgregarProducto()
+        public async Task AgregarProducto()
         {
            
            

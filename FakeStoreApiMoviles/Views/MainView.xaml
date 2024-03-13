@@ -36,8 +36,8 @@
 
                             <HorizontalStackLayout HorizontalOptions="Center" Margin="0,20,0,0">
 
-                                <Button Margin="0,0,20,0" Clicked="Editar" Text="Editar" Command="{Binding Path=BindingContext.VerProductoCommand, Source={x:Reference MainPage}}" CommandParameter="{Binding id}"></Button>
-                                <Button Text="Eliminar" Clicked="Eliminar" Command="{Binding BindingContext.EliminarProductoCommand, Source={x:Reference Name=lista}}" CommandParameter="{Binding id}"></Button>
+                                <Button Margin="0,0,20,0" Clicked="Editar" Text="Editar" Command="{Binding Path=BindingContext.VerProductoCommand, Source={x:Reference MainPage}}"  CommandParameter="{Binding id}"></Button>
+                                <Button Text="Eliminar" Clicked="Eliminar" Command="{Binding Path=BindingContext.VerProductoCommand, Source={x:Reference MainPage}}" CommandParameter="{Binding id}"></Button>
                             </HorizontalStackLayout>
                         </VerticalStackLayout>
                     </DataTemplate>

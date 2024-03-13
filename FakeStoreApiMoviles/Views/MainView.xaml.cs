@@ -6,16 +6,16 @@ public partial class MainView : ContentPage
 	{
 		InitializeComponent();
 	}
-	private async void Agregar(object sender, EventArgs e)
+	private  void Agregar(object sender, EventArgs e)
 	{
-		await	Navigation.PushAsync(new AgregarProductoView());
+			Navigation.PushAsync(new AgregarProductoView());
 	}
-	private async void Editar(object sender,EventArgs e)
+	private  void Editar(object sender,EventArgs e)
 	{
-		await Navigation.PushAsync(new EditarProductoView());
+		 Navigation.PushAsync(new EditarProductoView());
 	}
-	private async void Eliminar(object sender, EventArgs e)
+	private  void Eliminar(object sender, EventArgs e)
 	{
-	 await  Navigation.PushAsync(new EliminarProductoView());
+	 Navigation.PushAsync(new EliminarProductoView());
 	}
 }

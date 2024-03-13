@@ -66,33 +66,36 @@ namespace FakeStoreApiMoviles.Services
                 var resultcontent = await result.Content.ReadAsStringAsync();
             }
         }
-        public async Task UpdateProduct(ProductoDto dto)
+        public async Task UpdateProduct(ProductoDto product, int id)
         {
-            
             client = new();
-            var destino = new Uri($"{url}products/{dto.id}");
-            var productoputdto = new ProductoDto()
-            {
-                
-                price = dto.price,
-                description = dto.description,
-                categoryId = dto.categoryId,
-                images = new List<string>() { "https://i.imgur.com/cSytoSD.jpeg" },
-                title = dto.title,
+            var destino = new Uri($"{url}products/{id}");
+
+            var productData = new ProductoDto()
+            { 
+                id = id,
+                categoryId = product.categoryId,
+                description = product.description,
+                title = product.title,
+                price = product.price
             };
-            var newputson = JsonSerializer.Serialize(productoputdto);
-            var content = new StringContent(newputson, Encoding.UTF8, "application/json");
+
+            var newputJson = JsonSerializer.Serialize(productData);
+            var content = new StringContent(newputJson, Encoding.UTF8, "application/json");
             var result = await client.PutAsync(destino, content);
+
             if (result.IsSuccessStatusCode)
             {
                 var resultcontent = await result.Content.ReadAsStringAsync();
             }
         }
-        public async Task DeleteProduct( ProductoDto dto, int id)
+        public async Task DeleteProduct(int id)
         {
             client = new();
             var destino = new Uri($"{url}products/{id}");
+
             var result = await client.DeleteAsync(destino);
+
         }
     }
 }
